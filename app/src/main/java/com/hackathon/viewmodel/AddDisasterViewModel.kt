@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
 data class ReportState(
-    val type: String = "Select type", val status: String = "Status"
+    val type: String = "Select type", val status: String = "Status",val place:String=""
 )
 
 class AddDisasterViewModel : ViewModel() {
@@ -87,6 +87,14 @@ class AddDisasterViewModel : ViewModel() {
                     _isPosted.value = false
                 }
             }
+        }
+    }
+
+    fun setPlace(it: String) {
+        _state.update { cs ->
+            cs.copy(
+                place = it
+            )
         }
     }
 }

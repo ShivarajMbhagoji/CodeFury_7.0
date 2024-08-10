@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
+import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.border
@@ -34,6 +35,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
@@ -44,8 +46,10 @@ import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -54,6 +58,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.google.firebase.auth.FirebaseAuth
 import com.hackathon.model.DisasterModel
+import com.hackathon.navigation.NavRoutes
+import com.hackathon.ui.components.MyOutlinedTextField
+import com.hackathon.ui.theme.txtHintColor
 import com.hackathon.viewmodel.AddDisasterViewModel
 import java.util.UUID
 
@@ -84,7 +91,16 @@ fun AddDisasterScreen(navController: NavHostController, modifier: Modifier = Mod
         rememberLauncherForActivityResult(contract = ActivityResultContracts.RequestPermission()) {
 
         }
-
+    LaunchedEffect(isPosted) {
+        if(isPosted)
+        {
+            Toast.makeText(context,"Posted",Toast.LENGTH_SHORT).show()
+            navController.navigate(NavRoutes.Home.route) {
+                popUpTo(navController.graph.startDestinationId)
+                launchSingleTop = true
+            }
+        }
+    }
 
     val state by vm.uiState.collectAsState()
 
@@ -95,7 +111,10 @@ fun AddDisasterScreen(navController: NavHostController, modifier: Modifier = Mod
         "Wildfire",
         "Flood",
         "Heatwave",
-        "other"
+        "Tsunami",
+        "Cloud Burst",
+        "Cyclone",
+        "other",
     )
 
     val status= listOf(
@@ -120,7 +139,7 @@ fun AddDisasterScreen(navController: NavHostController, modifier: Modifier = Mod
                     titleContentColor = MaterialTheme.colorScheme.primary,
                 ),
                 title = {
-                    Text("Report Disaster")
+                    Text("Report")
                 },
                 navigationIcon = {
                     Surface(
@@ -158,19 +177,17 @@ fun AddDisasterScreen(navController: NavHostController, modifier: Modifier = Mod
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            Box(
-                modifier = Modifier
-                    .height(50.dp)
-                    .fillMaxWidth()
-                    .border(1.dp, Color.Gray),
-                contentAlignment = Alignment.CenterStart
-
-            ) {
-                Text(
-                    text = "Bangalore,India",
-                    modifier = Modifier.padding(start = 20.dp)
-                )
-            }
+            MyOutlinedTextField(
+                modifier = Modifier.fillMaxWidth(),
+                value = state.place,
+                label = "Place",
+                onValueChange = {
+                    vm.setPlace(it)
+                },
+                shape = RectangleShape,
+                innerTextColor = txtHintColor,
+                keyboardType = KeyboardType.Text
+            )
 
             Spacer(modifier = Modifier.height(10.dp))
 
@@ -309,13 +326,20 @@ fun AddDisasterScreen(navController: NavHostController, modifier: Modifier = Mod
 
             Button(
                 onClick = {
-                    disaster=DisasterModel(
-                        title = state.type,
-                        status = state.status,
-                        uid = currentUserId,
-                        disasterId = UUID.randomUUID().toString()
-                    )
-                    vm.saveData(disaster, selectedImages)
+                    if(state.place.isEmpty() || state.type.isEmpty() || state.status.isEmpty()) {
+                        Toast.makeText(context,"Please fill all the fields",Toast.LENGTH_SHORT).show()
+
+
+                    }else{
+                        disaster = DisasterModel(
+                            place = state.place,
+                            title = state.type,
+                            status = state.status,
+                            uid = currentUserId,
+                            disasterId = UUID.randomUUID().toString()
+                        )
+                        vm.saveData(disaster, selectedImages)
+                    }
                 },
                 modifier = Modifier
                     .fillMaxWidth()
