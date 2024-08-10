@@ -326,14 +326,20 @@ fun AddDisasterScreen(navController: NavHostController, modifier: Modifier = Mod
 
             Button(
                 onClick = {
-                    disaster=DisasterModel(
-                        place = state.place,
-                        title = state.type,
-                        status = state.status,
-                        uid = currentUserId,
-                        disasterId = UUID.randomUUID().toString()
-                    )
-                    vm.saveData(disaster, selectedImages)
+                    if(state.place.isEmpty() || state.type.isEmpty() || state.status.isEmpty()) {
+                        Toast.makeText(context,"Please fill all the fields",Toast.LENGTH_SHORT).show()
+
+
+                    }else{
+                        disaster = DisasterModel(
+                            place = state.place,
+                            title = state.type,
+                            status = state.status,
+                            uid = currentUserId,
+                            disasterId = UUID.randomUUID().toString()
+                        )
+                        vm.saveData(disaster, selectedImages)
+                    }
                 },
                 modifier = Modifier
                     .fillMaxWidth()
