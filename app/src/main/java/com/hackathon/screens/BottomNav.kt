@@ -36,7 +36,7 @@ fun BottomNavScreen(navHostController: NavHostController, modifier: Modifier = M
             startDestination = NavRoutes.Home.route
         ) {
             composable(NavRoutes.Home.route) {
-                HomeScreen()
+                HomeScreen(navHostController)
             }
             composable(NavRoutes.Search.route) {
                 SearchVolunteerScreen(navHostController)

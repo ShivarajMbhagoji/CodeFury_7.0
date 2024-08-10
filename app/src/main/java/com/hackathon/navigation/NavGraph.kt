@@ -48,7 +48,7 @@ fun NavGraph(navController: NavHostController, modifier: Modifier = Modifier) {
             SplashScreen(navController)
         }
         composable(NavRoutes.Home.route) {
-            HomeScreen()
+            HomeScreen(navController)
         }
         composable(NavRoutes.Search.route) {
             SearchVolunteerScreen(navController)
