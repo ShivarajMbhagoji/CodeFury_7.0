@@ -3,7 +3,9 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
     id ("kotlinx-serialization")
-
+    id ("kotlin-kapt")
+    id ("com.google.dagger.hilt.android")
+    id ("kotlin-parcelize")
 }
 
 android {
@@ -79,7 +81,19 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-database")
+    implementation("com.google.firebase:firebase-messaging-ktx:23.2.1")
 
+    implementation("com.google.accompanist:accompanist-permissions:0.31.1-alpha")
 
+    implementation("com.google.dagger:hilt-android:2.51.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.51.1")
+    implementation ("androidx.hilt:hilt-navigation-compose:1.2.0")
+
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    //Paging 3
+    implementation ("androidx.paging:paging-runtime:3.2.1")
+    implementation ("androidx.paging:paging-compose:3.2.1")
     implementation("io.coil-kt:coil-compose:2.6.0")
 }

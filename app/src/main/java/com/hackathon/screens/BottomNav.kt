@@ -14,12 +14,18 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.paging.compose.collectAsLazyPagingItems
+import com.hackathon.data.dto.GlobalEventsScreen
+import com.hackathon.data.dto.GlobalEventsViewModel
+import com.hackathon.emergency.EmergencyContactViewModel
+import com.hackathon.emergency.EmergenyContactScreen
 import com.hackathon.model.NavBarItem
 import com.hackathon.navigation.NavRoutes
 
@@ -38,11 +44,19 @@ fun BottomNavScreen(navHostController: NavHostController, modifier: Modifier = M
             composable(NavRoutes.Home.route) {
                 HomeScreen(navHostController)
             }
+
             composable(NavRoutes.Search.route) {
-                SearchVolunteerScreen(navHostController)
+                val viewModel: EmergencyContactViewModel = hiltViewModel()
+                val events = viewModel.datas.collectAsLazyPagingItems()
+                EmergenyContactScreen(events)
             }
-            composable(NavRoutes.Map.route) {
-                MapScreen()
+            
+            composable(NavRoutes.GlobalEvents.route) {
+                val viewModel: GlobalEventsViewModel = hiltViewModel()
+                val events = viewModel.events.collectAsLazyPagingItems()
+                GlobalEventsScreen(events) {
+
+                }
             }
             composable(NavRoutes.Profile.route) {
                 ProfileScreen(navHostController)
@@ -65,7 +79,7 @@ fun MyBottomBar(navController1: NavHostController) {
         ), NavBarItem(
             "Add Disaster", NavRoutes.AddDisaster.route, Icons.Rounded.Add
         ), NavBarItem(
-            "Map", NavRoutes.Map.route, Icons.Rounded.Notifications
+            "GlobalEvents", NavRoutes.GlobalEvents.route, Icons.Rounded.Notifications
         ), NavBarItem(
             "Profile", NavRoutes.Profile.route, Icons.Rounded.Person
         )

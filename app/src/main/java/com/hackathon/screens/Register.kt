@@ -1,6 +1,9 @@
 package com.hackathon.screens
 
+import android.Manifest
+import android.os.Build
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -34,12 +37,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.isGranted
+import com.google.accompanist.permissions.rememberPermissionState
+import com.google.firebase.Firebase
+import com.google.firebase.messaging.messaging
 import com.hackathon.navigation.NavRoutes
+import com.hackathon.ui.components.FirebaseMessagingNotificationPermissionDialog
 import com.hackathon.ui.components.MyOutlinedTextField
 import com.hackathon.ui.theme.backgroundColor
 import com.hackathon.ui.theme.txtColor
 import com.hackathon.viewmodel.AuthViewModel
 
+@OptIn(ExperimentalPermissionsApi::class)
+@RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
 fun RegisterScreen(
     navController: NavHostController,
@@ -49,9 +60,27 @@ fun RegisterScreen(
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var name by remember { mutableStateOf("") }
+    var place by remember { mutableStateOf("") }
     val context = LocalContext.current
 
     val firebaseUser by authViewModel.firebaseUser.collectAsState()
+    val showNotificationDialog = remember { mutableStateOf(false) }
+
+    val notificationPermissionState = rememberPermissionState(
+        permission = Manifest.permission.POST_NOTIFICATIONS
+    )
+    if (showNotificationDialog.value) FirebaseMessagingNotificationPermissionDialog(
+        showNotificationDialog = showNotificationDialog,
+        notificationPermissionState = notificationPermissionState
+    )
+
+    LaunchedEffect(key1=Unit){
+        if (!notificationPermissionState.status.isGranted ||(
+            Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU)
+        ) {
+            showNotificationDialog.value = true
+        }
+    }
 
     LaunchedEffect(firebaseUser) {
         if (firebaseUser != null) {
@@ -105,20 +134,29 @@ fun RegisterScreen(
                 modifier = modifier.fillMaxWidth(),
                 innerTextColor = txtColor,
                 shape = RoundedCornerShape(14.dp),
-                keyboardType = KeyboardType.Password,
+                keyboardType = KeyboardType.Password
             )
+             MyOutlinedTextField(
+                    value = place,
+                    onValueChange = { place = it },
+                    label = "Place",
+                    modifier = modifier.fillMaxWidth(),
+                    innerTextColor = txtColor,
+                    shape = RoundedCornerShape(14.dp),
+                    keyboardType = KeyboardType.Text
+             )
             Spacer(modifier = Modifier.height(5.dp))
             ElevatedButton(
                 onClick = {
 
-                    if (name.isEmpty() || password.isEmpty() || email.isEmpty()) {
+                    if (name.isEmpty() || password.isEmpty() || email.isEmpty()|| place.isEmpty()) {
                         Toast.makeText(context, "Please fill all fields", Toast.LENGTH_SHORT).show()
                     } else {
+                        Firebase.messaging.subscribeToTopic(place)
                         authViewModel.register(
                             email, password, name, context
                         )
                     }
-
                 },
                 colors = ButtonDefaults.buttonColors()
                     .copy(containerColor = Color(0xFFDA5D5D), contentColor = Color(0xFFFFFFFF))
