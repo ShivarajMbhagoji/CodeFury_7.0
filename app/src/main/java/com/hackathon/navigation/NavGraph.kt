@@ -1,11 +1,19 @@
 package com.hackathon.navigation
 
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.paging.compose.collectAsLazyPagingItems
+import com.hackathon.data.dto.GlobalEventsScreen
+import com.hackathon.data.dto.GlobalEventsViewModel
+import com.hackathon.emergency.EmergencyContactViewModel
+import com.hackathon.emergency.EmergenyContactScreen
 import com.hackathon.screens.AddDisasterScreen
 import com.hackathon.screens.BottomNavScreen
 import com.hackathon.screens.DisasterDetails
@@ -14,7 +22,6 @@ import com.hackathon.screens.LoginScreen
 import com.hackathon.screens.MapScreen
 import com.hackathon.screens.ProfileScreen
 import com.hackathon.screens.RegisterScreen
-import com.hackathon.screens.SearchVolunteerScreen
 import com.hackathon.screens.SplashScreen
 
 
@@ -37,9 +44,13 @@ sealed class NavRoutes(val route:String){
     data object Map:NavRoutes("Map")
 
     data object DisasterDetails:NavRoutes("DisasterDetails/{data}")
+
+    data object GlobalEvents:NavRoutes("GlobalEvents")
+    data object EmergencyContacts:NavRoutes("EmergencyContacts")
 }
 
 
+@RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
 fun NavGraph(navController: NavHostController, modifier: Modifier = Modifier) {
 
@@ -51,7 +62,9 @@ fun NavGraph(navController: NavHostController, modifier: Modifier = Modifier) {
             HomeScreen(navController)
         }
         composable(NavRoutes.Search.route) {
-            SearchVolunteerScreen(navController)
+            val viewModel: EmergencyContactViewModel = hiltViewModel()
+            val events = viewModel.datas.collectAsLazyPagingItems()
+            EmergenyContactScreen(events)
         }
         composable(NavRoutes.Map.route) {
             MapScreen()
@@ -74,6 +87,14 @@ fun NavGraph(navController: NavHostController, modifier: Modifier = Modifier) {
         composable(NavRoutes.DisasterDetails.route) {
             val data = it.arguments!!.getString("data")
             DisasterDetails(navController,data!!)
+        }
+
+        composable(NavRoutes.GlobalEvents.route) {
+            val viewModel: GlobalEventsViewModel = hiltViewModel()
+            val events = viewModel.events.collectAsLazyPagingItems()
+            GlobalEventsScreen(events) {
+
+            }
         }
 
 
