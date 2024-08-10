@@ -50,7 +50,8 @@ fun EventCard(
                     context.startActivity(it)
                 }
             }
-        },
+        }
+            .padding(5.dp),
 
         ) {
 
@@ -92,14 +93,6 @@ fun EventCard(
                 )
 
 
-//                Text(
-//                    modifier=Modifier.fillMaxWidth()
-//                        .padding(end=10.dp),
-////                    textAlign = TextAlign.Right,
-//                    text = "alertlevel",
-//                    style = MaterialTheme.typography.bodyLarge,
-//                    color = Color.Red
-//                )
 
                 Text(
                     modifier=Modifier.fillMaxWidth()
@@ -109,6 +102,8 @@ fun EventCard(
                     style = MaterialTheme.typography.bodyLarge,
                     color = Color.Red
                 )
+
+
 
             }
         }

@@ -3,11 +3,11 @@ package com.hackathon.screens
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Add
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material.icons.rounded.Home
-import androidx.compose.material.icons.rounded.Notifications
 import androidx.compose.material.icons.rounded.Person
-import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBarItem
@@ -50,7 +50,7 @@ fun BottomNavScreen(navHostController: NavHostController, modifier: Modifier = M
                 val events = viewModel.datas.collectAsLazyPagingItems()
                 EmergenyContactScreen(events)
             }
-            
+
             composable(NavRoutes.GlobalEvents.route) {
                 val viewModel: GlobalEventsViewModel = hiltViewModel()
                 val events = viewModel.events.collectAsLazyPagingItems()
@@ -75,11 +75,11 @@ fun MyBottomBar(navController1: NavHostController) {
         NavBarItem(
             "Home", NavRoutes.Home.route, Icons.Rounded.Home
         ), NavBarItem(
-            "Search", NavRoutes.Search.route, Icons.Rounded.Search
+            "Search", NavRoutes.Search.route, Icons.Filled.Call
         ), NavBarItem(
-            "Add Disaster", NavRoutes.AddDisaster.route, Icons.Rounded.Add
+            "Add Disaster", NavRoutes.AddDisaster.route, Icons.Filled.Add
         ), NavBarItem(
-            "GlobalEvents", NavRoutes.GlobalEvents.route, Icons.Rounded.Notifications
+            "GlobalEvents", NavRoutes.GlobalEvents.route, Icons.Filled.MailOutline
         ), NavBarItem(
             "Profile", NavRoutes.Profile.route, Icons.Rounded.Person
         )

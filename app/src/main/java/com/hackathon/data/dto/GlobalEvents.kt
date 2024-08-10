@@ -64,7 +64,7 @@ fun GlobalEventsScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize().padding(innerPadding)
-                .padding(top = MediumPadding1)
+
                 .statusBarsPadding()
         ) {
             Spacer(modifier = Modifier.height(MediumPadding1))
