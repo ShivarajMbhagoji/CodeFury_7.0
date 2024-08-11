@@ -13,6 +13,17 @@ The Disaster Management App is a comprehensive mobile application designed to as
 - User Authentication: Secure sign-in and sign-up using Firebase Authentication.
 - Data Synchronization: Sync data across devices with Firebase Realtime Database or Firestore.
 
+
+## Drive Link
+           ------for videos,screenshots and other resources
+           -Link : https://drive.google.com/drive/folders/1uUlczzHovaZlkqasE56NgEaAVpW1TPim?usp=sharing
+
+
+# Team  - - Planet of Apps
+-Mohan H  S
+-Shivaraj M B
+-Manohar M
+
 ## Tech Stack
 
 - Jetpack Compose: Modern UI toolkit for building native Android UIs.
@@ -35,6 +46,10 @@ The Disaster Management App is a comprehensive mobile application designed to as
 <img src="https://github.com/user-attachments/assets/3a9dfb85-0629-4c09-a1da-251feaf7fa89" alt="Global Disasters Feed" width="400" height="500">
 <img src="https://github.com/user-attachments/assets/04c506ec-9de7-4234-abee-d731eb386e3f" alt="Profile Page" width="400" height="500">
 <img src="https://github.com/user-attachments/assets/6469f035-df1a-4851-b2e9-bbc2d65756b0" alt="Splash Screen" width="400" height="500">
+
+
+
+      
 
 
 
