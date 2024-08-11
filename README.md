@@ -36,16 +36,16 @@ Link : https://drive.google.com/drive/folders/1uUlczzHovaZlkqasE56NgEaAVpW1TPim?
 
 ### ScreenShots
 
-<img src="https://github.com/user-attachments/assets/6469f035-df1a-4851-b2e9-bbc2d65756b0" alt="Splash Screen" width="400" height="500">
-<img src="https://github.com/user-attachments/assets/4848dd87-43a8-4cb8-b127-17c25b1b496a" alt="Login Page" width="400" height="500">
-<img src="https://github.com/user-attachments/assets/1b9db6e2-eb78-4eb1-be2f-9610ad94e497" alt="SignUp Page" width="400" height="500">
-<img src="https://github.com/user-attachments/assets/d2f43f04-afaf-4b5a-8dd1-180c0654d122" alt="Home Page" width="400" height="500">
-<img src="https://github.com/user-attachments/assets/33a2497a-4958-46b4-b679-cf8192e56c90" alt="Emergrncy Contact by Country" width="400" height="500">
-<img src="https://github.com/user-attachments/assets/9a5d960d-f029-4618-af73-bdcba8d3df18" alt="Report a Disaster" width="400" height="500">
-<img src="https://github.com/user-attachments/assets/7497cb6f-5ba1-4e0e-ae18-1598179d1f1c" alt="Disaster detail" width="400" height="500">
-<img src="https://github.com/user-attachments/assets/3a9dfb85-0629-4c09-a1da-251feaf7fa89" alt="Global Disasters Feed" width="400" height="500">
-<img src="https://github.com/user-attachments/assets/04c506ec-9de7-4234-abee-d731eb386e3f" alt="Profile Page" width="400" height="500">
-<img src="https://github.com/user-attachments/assets/6469f035-df1a-4851-b2e9-bbc2d65756b0" alt="Splash Screen" width="400" height="500">
+<img src="https://github.com/user-attachments/assets/6469f035-df1a-4851-b2e9-bbc2d65756b0" alt="Splash Screen" width="400" height="600">
+<img src="https://github.com/user-attachments/assets/4848dd87-43a8-4cb8-b127-17c25b1b496a" alt="Login Page" width="400" height="600">
+<img src="https://github.com/user-attachments/assets/1b9db6e2-eb78-4eb1-be2f-9610ad94e497" alt="SignUp Page" width="400" height="600">
+<img src="https://github.com/user-attachments/assets/d2f43f04-afaf-4b5a-8dd1-180c0654d122" alt="Home Page" width="400" height="600">
+<img src="https://github.com/user-attachments/assets/33a2497a-4958-46b4-b679-cf8192e56c90" alt="Emergrncy Contact by Country" width="400" height="600">
+<img src="https://github.com/user-attachments/assets/9a5d960d-f029-4618-af73-bdcba8d3df18" alt="Report a Disaster" width="400" height="600">
+<img src="https://github.com/user-attachments/assets/7497cb6f-5ba1-4e0e-ae18-1598179d1f1c" alt="Disaster detail" width="400" height="600">
+<img src="https://github.com/user-attachments/assets/3a9dfb85-0629-4c09-a1da-251feaf7fa89" alt="Global Disasters Feed" width="400" height="600">
+<img src="https://github.com/user-attachments/assets/04c506ec-9de7-4234-abee-d731eb386e3f" alt="Profile Page" width="400" height="600">
+<img src="https://github.com/user-attachments/assets/6469f035-df1a-4851-b2e9-bbc2d65756b0" alt="Splash Screen" width="400" height="600">
 
 
 
@@ -104,7 +104,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For any questions or feedback, please contact:
 
-- Email: your-email@example.com
-- GitHub Issues: [link to issues](https://github.com/yourusername/disaster-management-app/issues)
+- Email: bhagojishivaraj321@gmail.com
+- GitHub Issues: [link to issues](https://github.com/Mohanmanuhs/CodeFury_7.0)
 
 ---
