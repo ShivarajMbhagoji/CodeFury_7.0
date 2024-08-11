@@ -4,6 +4,9 @@
 
 The Disaster Management App is a comprehensive mobile application designed to assist in managing and responding to disaster situations effectively. Built with Jetpack Compose,Paging3,Dagger-HILT, Firebase, and Retrofit, this app provides real-time updates, alerts, and resources to users during emergencies.
 
+
+
+
 ## Features
 
 - Real-Time Alerts: Receive timely notifications about disaster events and updates.
@@ -12,6 +15,9 @@ The Disaster Management App is a comprehensive mobile application designed to as
 - Resource Management: Keep track of essential resources and supplies.
 - User Authentication: Secure sign-in and sign-up using Firebase Authentication.
 - Data Synchronization: Sync data across devices with Firebase Realtime Database or Firestore.
+
+
+-We have used 'DisasterSafe' api to fetch the global disaster events and Emergency contact of respective countries
 
 
 ## Drive Link
