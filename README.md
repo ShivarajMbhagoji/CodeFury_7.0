@@ -16,7 +16,7 @@ The Disaster Management App is a comprehensive mobile application designed to as
 
 ## Drive Link
            ------for videos,screenshots and other resources
-           -Link : https://drive.google.com/drive/folders/1uUlczzHovaZlkqasE56NgEaAVpW1TPim?usp=sharing
+Link : https://drive.google.com/drive/folders/1uUlczzHovaZlkqasE56NgEaAVpW1TPim?usp=sharing
 
 
 # Team  - - Planet of Apps
